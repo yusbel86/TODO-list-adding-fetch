@@ -1,5 +1,14 @@
 @import "~bootstrap/scss/bootstrap.scss";
 
+legend { 
+  display: block;
+  padding-left: 2px;
+  padding-right: 2px;
+  border: none;
+}
+
+
+
 /* 
 
     You can write your own styles here...

@@ -7,6 +7,8 @@ import rigoImage from "../../img/rigo-baby.jpg";
 export function Home() {
 	const [list, setList] = useState([]);
 	const [content, setContent] = useState();
+
+	const [count, setCount] = useState(0);
 	return (
 		<>
 			<div className="text-center pt-5 mt-5">
@@ -27,9 +29,21 @@ export function Home() {
 						}
 					}}
 				/>
+
 				{list.map((item, index) => {
 					return <div key={index}>{item}</div>;
 				})}
+			</div>
+			<hr />
+
+			<div className="text-center pt-5 mt-5">
+				<p>you clicked {count} times</p>
+				<button
+					onClick={() => {
+						setCount(count + 1);
+					}}>
+					Click
+				</button>
 			</div>
 		</>
 	);
