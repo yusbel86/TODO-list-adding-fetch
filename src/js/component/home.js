@@ -18,15 +18,23 @@ export function Home() {
 					onChange={e => setContent(e.target.value)}
 					onKeyPress={e => {
 						if (e.key === "Enter") {
-							setList(list.concat(content));
-							setContent("");
+							if (content !== "") {
+								setList(list.concat(content.toUpperCase()));
+								setContent("");
+							} else {
+								alert("input one text,please!");
+							}
 						}
 					}}
 				/>
 				<button
 					onClick={() => {
-						setList(list.concat(content));
-						setContent("");
+						if (content !== "") {
+							setList(list.concat(content.toUpperCase()));
+							setContent("");
+						} else {
+							alert("input one text,please!");
+						}
 					}}>
 					add to do
 				</button>
@@ -35,14 +43,20 @@ export function Home() {
 						<div
 							key={index}
 							onClick={() =>
-								setList(list.filter(e => e !== item))
-							}>
+								setList(
+									list.filter(
+										(itemf, indexf) => indexf !== index
+									)
+								)
+							}
+							className="list-group-item list-group-item-action">
 							{item}
 						</div>
 					);
 				})}
+				<br />
+				<cite>{"* " + list.length + " items left"} </cite>
 			</div>
-			<hr />
 		</>
 	);
 }
