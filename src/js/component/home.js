@@ -14,8 +14,9 @@ export function Home() {
 			<div className="text-center pt-5 mt-5">
 				<h1>todos</h1>
 				<input
+					key={"txt1"}
 					value={content}
-					onChange={e => setContent(e.target.value)}
+					onChange={e => setContent(e.target.value.toUpperCase())}
 					onKeyPress={e => {
 						if (e.key === "Enter") {
 							if (content !== "") {
@@ -60,3 +61,9 @@ export function Home() {
 		</>
 	);
 }
+
+/*
+    window.onload = function() {
+	document.getElementById("#txt1").focus();
+};
+*/
