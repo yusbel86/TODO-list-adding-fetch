@@ -1,69 +1,65 @@
-import React, { useState } from "react";
-
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+import React, { useState, useEffect } from "react";
 
 //create your first component
 export function Home() {
 	const [list, setList] = useState([]);
 	const [content, setContent] = useState();
 
-	const [count, setCount] = useState(0);
+	function getToDo() {
+		fetch("https://assets.breatheco.de/apis/fake/todos/user/ipince")
+			.then(resp => resp.json())
+			.then(data => {
+				setList(data);
+				console.log("getToDo", data);
+			});
+	}
+
+	function saveToDo(listToSave) {
+		fetch("https://assets.breatheco.de/apis/fake/todos/user/ipince", {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify(listToSave)
+		})
+			.then(resp => resp.json())
+			.then(data => {
+				console.log("saveToDo", data);
+				getToDo();
+			});
+	}
+
+	//for list todos
+	useEffect(() => {
+		getToDo();
+	}, []);
+
 	return (
 		<>
-			<div className="text-center pt-5 mt-5">
+			<div value={content} className="text-center pt-5 mt-5">
 				<h1>todos</h1>
-				<input
-					key={"txt1"}
-					value={content}
-					onChange={e => setContent(e.target.value.toUpperCase())}
-					onKeyPress={e => {
-						if (e.key === "Enter") {
-							if (content !== "") {
-								setList(list.concat(content.toUpperCase()));
-								setContent("");
-							} else {
-								alert("input one text,please!");
-							}
-						}
-					}}
-				/>
+				<input value={content} placeholder=" add a task" />
 				<button
 					onClick={() => {
-						if (content !== "") {
-							setList(list.concat(content.toUpperCase()));
-							setContent("");
-						} else {
-							alert("input one text,please!");
-						}
-					}}>
+						setContent(content);
+						saveToDo(setContent);
+					}}
+					className="btn btn-primary">
 					add to do
 				</button>
-				{list.map((item, index) => {
-					return (
-						<div
-							key={index}
-							onClick={() =>
-								setList(
-									list.filter(
-										(itemf, indexf) => indexf !== index
-									)
-								)
-							}
-							className="list-group-item list-group-item-action">
-							{item}
-						</div>
-					);
-				})}
-				<br />
+
+				{list &&
+					list.map((item, index) => {
+						return (
+							<div
+								key={index}
+								className="list-group-item list-group-item-action">
+								{item.label}
+							</div>
+						);
+					})}
 				<cite>{"* " + list.length + " items left"} </cite>
 			</div>
 		</>
 	);
 }
-
-/*
-    window.onload = function() {
-	document.getElementById("#txt1").focus();
-};
-*/
