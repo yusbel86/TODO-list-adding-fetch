@@ -122,18 +122,32 @@ export function Home() {
 						</label>
 					</div>
 				</fieldset>
-				{list &&
-					list.map((item, index) => {
-						return (
-							<div
-								key={index}
-								className="list-group-item list-group-item-action">
-								{item.label + "-" + item.done}
-							</div>
-						);
-					})}
-
+				<table className="table table-hover">
+					<thead className="thead-light">
+						<tr>
+							<th>Label</th>
+							<th>Done</th>
+						</tr>
+					</thead>
+					<tbody>
+						{list.map((item, index) => {
+							return (
+								<tr key={index}>
+									<td>{item.label}</td>
+									<td>
+										<input
+											type="checkbox"
+											checked={item.done}
+										/>
+									</td>
+								</tr>
+							);
+						})}
+					</tbody>
+				</table>
 				<cite>{"* " + list.length + " items left"} </cite>
+				<br />
+				<br />
 				<br />
 				<div className="btn-group">
 					<button

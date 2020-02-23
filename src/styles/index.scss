@@ -1,5 +1,21 @@
 @import "~bootstrap/scss/bootstrap.scss";
 
+/* Styles go here */
+/*
+thead {color:green;}
+tbody {color:blue;}
+tfoot {color:red;}
+
+table, th, td {
+  border: 1px solid black;
+}
+td, th{
+  padding: 5px;
+}
+*/
+
+    
+
 legend { 
   display: block;
   padding-left: 2px;
@@ -9,7 +25,9 @@ legend {
 
 cite{
     color: blue;
+     float: "right" !important
 }
+
 
 /* 
 
