@@ -35,7 +35,7 @@ export function Home() {
 			.then(data => {
 				console.log("saveToDo", data);
 				getToDo();
-				alert("Update OK!");
+				alert(data.result);
 			});
 	}
 
@@ -50,7 +50,6 @@ export function Home() {
 			.then(data => {
 				console.log("deleteToDo", data);
 				newToDo();
-				getToDo();
 				alert("Clean OK!");
 			});
 	}
@@ -65,7 +64,7 @@ export function Home() {
 		})
 			.then(resp => resp.json())
 			.then(data => {
-				console.log("deleteToDo", data);
+				console.log("newToDo", data);
 				getToDo();
 			});
 	}
@@ -76,7 +75,7 @@ export function Home() {
 	return (
 		<>
 			<div className="container">
-				<h1>To Do List</h1>
+				<h1>ToDo List</h1>
 
 				<div className="form-group">
 					<label>
