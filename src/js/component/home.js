@@ -76,11 +76,11 @@ export function Home() {
 
 	return (
 		<>
-			<div classNameName="container">
+			<div className="container">
 				<fieldset>
 					<legend>ToDo List</legend>
 
-					<div classNameName="form-group">
+					<div className="form-group">
 						<label>
 							Task: &nbsp;&nbsp;
 							<input
@@ -127,7 +127,7 @@ export function Home() {
 						return (
 							<div
 								key={index}
-								classNameName="list-group-item list-group-item-action">
+								className="list-group-item list-group-item-action">
 								{item.label + "-" + item.done}
 							</div>
 						);
@@ -135,20 +135,20 @@ export function Home() {
 
 				<cite>{"* " + list.length + " items left"} </cite>
 				<br />
-				<div classNameName="btn-group">
+				<div className="btn-group">
 					<button
 						onClick={() => {
 							getToDo();
 						}}
 						type="button"
-						classNameName="btn btn-primary">
+						className="btn btn-primary">
 						Refresh
 					</button>
 					<button
 						onClick={() => {
 							saveToDo(list);
 						}}
-						classNameName="btn btn-success"
+						className="btn btn-success"
 						type="button"
 						data-toggle="modal"
 						data-target="#myModal">
@@ -156,7 +156,7 @@ export function Home() {
 					</button>
 					<button
 						type="button"
-						classNameName="btn btn-danger"
+						className="btn btn-danger"
 						onClick={() => {
 							deleteToDo();
 						}}>
